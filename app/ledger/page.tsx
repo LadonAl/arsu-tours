@@ -3,6 +3,7 @@ import { SPLIT, STATS, SAMPLE_TOTAL_USD, SAMPLE_LABEL, LEDGER_INTRO, REAL_NOTE }
 import { DEMO } from '@/content/site';
 import { Money } from '@/components/CurrencyProvider';
 import { Reveal } from '@/components/Reveal';
+import { HexStats } from '@/components/HexStats';
 
 export const metadata: Metadata = {
   title: 'The ledger',
@@ -48,64 +49,8 @@ export default function LedgerPage() {
       {/* Hexagon stat cells — the design's signature treatment for this page */}
       <section style={{ paddingBottom: 56 }}>
         <div className="shell">
-          <Reveal stagger>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-                gap: 20,
-              }}
-            >
-              {STATS.map((s) => (
-                <div key={s.label} style={{ position: 'relative', aspectRatio: '1 / 1.08' }}>
-                  <span
-                    className="hex-outline"
-                    aria-hidden="true"
-                    style={{ position: 'absolute', inset: 0 }}
-                  >
-                    <span style={{ position: 'absolute', inset: 1, background: '#fff' }} />
-                  </span>
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
-                      padding: '0 17%',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: 'clamp(1.7rem, 3.4vw, 2.3rem)',
-                        fontWeight: 800,
-                        color: 'var(--green)',
-                        lineHeight: 1,
-                      }}
-                    >
-                      {s.value}
-                    </span>
-                    <span className="small" style={{ marginTop: 10, fontSize: '0.75rem' }}>
-                      {s.label}
-                    </span>
-                    {s.illustrative && (
-                      <span
-                        style={{
-                          marginTop: 7,
-                          fontSize: '0.67rem',
-                          color: 'var(--sienna)',
-                          fontWeight: 700,
-                        }}
-                      >
-                        (illustrative)
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+          <Reveal>
+            <HexStats stats={STATS} ghosts={2} />
           </Reveal>
         </div>
       </section>

@@ -31,7 +31,7 @@ export default function RegionsPage() {
       <section style={{ paddingBottom: 60 }}>
         <div className="shell">
           <Reveal>
-            <Honeycomb places={PLACES} />
+            <Honeycomb places={PLACES} perRow={5} />
           </Reveal>
         </div>
       </section>

@@ -25,7 +25,7 @@ export function JourneyCarousel() {
         aria-hidden="true"
         style={{ position: 'absolute', inset: 0, opacity: 0.12, pointerEvents: 'none' }}
       />
-      <div className="shell" style={{ paddingBlock: '72px 80px', position: 'relative' }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '92px 40px 96px', position: 'relative' }} className="max-[640px]:!px-5">
         <div
           style={{
             display: 'flex',
@@ -79,22 +79,6 @@ export function JourneyCarousel() {
               {j.body}
             </p>
 
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 20 }}>
-              {j.regions.map((r) => (
-                <span
-                  key={r}
-                  style={{
-                    border: '1px solid var(--bone)',
-                    padding: '5px 11px',
-                    fontSize: '0.74rem',
-                    fontWeight: 600,
-                    color: 'var(--muted)',
-                  }}
-                >
-                  {r}
-                </span>
-              ))}
-            </div>
 
             <div
               style={{
@@ -114,8 +98,8 @@ export function JourneyCarousel() {
                   per person
                 </span>
               </span>
-              <Link href={`/journeys/${j.slug}`} className="link-gold">
-                {j.slug === 'silk-road' ? 'Full itinerary' : 'See the journey'} →
+              <Link href={`/journeys/${j.slug}`} className="btn btn-solid">
+                {j.slug === 'silk-road' ? 'Full itinerary' : 'See the journey'}
               </Link>
             </div>
 

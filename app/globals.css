@@ -32,7 +32,7 @@
   /* Brand gold is 2.44:1 on white — fine on the green panels, far short of
      WCAG AA for text on paper. This is the accent to use on light grounds. */
   --accent-ink: #7a4a22;
-  --shell: 1180px;
+  --shell: 1240px;
   --header-h: 72px;
   --demo-h: 40px;
 }
@@ -74,12 +74,12 @@ a {
   width: 100%;
   max-width: var(--shell);
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: 40px;
 }
 
 @media (max-width: 640px) {
   .shell {
-    padding-inline: 16px;
+    padding-inline: 20px;
   }
 }
 
@@ -119,26 +119,26 @@ a {
    Type scale
    --------------------------------------------------------------------------- */
 .display {
-  font-size: clamp(2.35rem, 5.6vw, 3.85rem);
-  line-height: 1.04;
-  letter-spacing: -0.028em;
-  font-weight: 800;
+  font-size: clamp(42px, 4.8vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 700;
   color: var(--green);
   margin: 0;
   text-wrap: balance;
 }
 
 .h2 {
-  font-size: clamp(1.65rem, 3.1vw, 2.3rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  font-weight: 800;
+  font-size: clamp(32px, 3.4vw, 46px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  font-weight: 700;
   color: var(--green);
   margin: 0;
 }
 
 .h3 {
-  font-size: 1.16rem;
+  font-size: 19px;
   line-height: 1.3;
   font-weight: 700;
   color: var(--green);
@@ -146,7 +146,7 @@ a {
 }
 
 .eyebrow {
-  font-size: 0.706rem;
+  font-size: 11px;
   letter-spacing: 0.19em;
   text-transform: uppercase;
   font-weight: 700;
@@ -155,22 +155,22 @@ a {
 }
 
 .lead {
-  font-size: 1.045rem;
-  line-height: 1.62;
+  font-size: 18px;
+  line-height: 30px;
   color: var(--muted);
   margin: 0;
 }
 
 .body {
-  font-size: 0.945rem;
-  line-height: 1.68;
+  font-size: 15px;
+  line-height: 25px;
   color: var(--muted);
   margin: 0;
 }
 
 .small {
-  font-size: 0.82rem;
-  line-height: 1.55;
+  font-size: 13px;
+  line-height: 20px;
   color: var(--muted-soft);
   margin: 0;
 }
@@ -183,9 +183,9 @@ a {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 22px;
-  border-radius: 2px;
-  font-size: 0.875rem;
+  padding: 17px 32px;
+  border-radius: 3px;
+  font-size: 14px;
   font-weight: 700;
   border: 1px solid transparent;
   cursor: pointer;
@@ -214,11 +214,11 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.85rem;
+  font-size: 14px;
   font-weight: 700;
   color: var(--green);
   border-bottom: 1px solid var(--gold);
-  padding-bottom: 3px;
+  padding-bottom: 5px;
 }
 .link-gold:hover {
   color: var(--sienna);
@@ -264,80 +264,91 @@ a {
 }
 
 /* ---------------------------------------------------------------------------
-   Honeycomb place grid
+   Honeycomb place grid — ported from the v11 design.
+
+   The hexagon is pointy-top and the cell is a 1px #E6E2D8 frame: the <a> is
+   the frame, and the photo and label panel sit at inset 1px, each carrying the
+   same clip-path. On hover the frame turns gold and the label panel fades in.
    --------------------------------------------------------------------------- */
 .honeycomb {
-  --hex-gap: 14px;
-  /* Five hexes per row plus the half-hex offset of the second row must fit
-     inside the shell, or the page gains horizontal overflow. 5.5 columns. */
-  --hex-w: min(196px, calc((100vw - 104px) / 5.5));
-  --hex-h: calc(var(--hex-w) * 1.15);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+}
+
+.hexrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 14px;
+  width: 100%;
 }
 
 .hexcard {
   position: relative;
-  display: block;
-  width: var(--hex-w);
-  height: var(--hex-h);
-  flex: 0 0 auto;
-  overflow: hidden;
+  container-type: inline-size;
+  aspect-ratio: 1 / 1.1547;
   background: var(--bone);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 1px;
+  color: inherit;
+  transition: background-color 220ms ease;
 }
 
-.hexcard img {
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+.hexcard:hover,
+.hexcard:focus-visible {
+  background: var(--gold);
 }
 
-.hexcard:hover img,
-.hexcard:focus-visible img {
-  transform: scale(1.07);
-}
-
-.hexcard-veil {
+.hexcard-photo {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(11, 59, 47, 0.88) 0%, rgba(11, 59, 47, 0.28) 46%, rgba(11, 59, 47, 0) 72%);
+  inset: 1px;
+  background-size: cover;
+  background-position: center;
 }
 
-.hexcard-text {
+.hexcard-panel {
   position: absolute;
-  left: 0;
-  right: 0;
-  /* The hexagon narrows toward the bottom edge. At 15% up from the base the
-     shape is ~65% of full width, so the text box is inset 20% a side to stay
-     inside the clip. */
-  bottom: 19%;
+  inset: 1px;
+  background: rgba(255, 255, 255, 0.95);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding-inline: 17%;
+  justify-content: center;
+  gap: 6px;
+  padding: 18% 14%;
   text-align: center;
-  color: #fff;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.hexcard:hover .hexcard-panel,
+.hexcard:focus-visible .hexcard-panel {
+  opacity: 1;
+}
+
+/* cqw units: these scale against the cell, so one rule covers every row size. */
+.hexcard-ar {
+  font-size: clamp(9px, 7.5cqw, 14px);
+  color: var(--accent-ink);
 }
 
 .hexcard-name {
-  font-weight: 800;
-  font-size: 0.95rem;
-  letter-spacing: -0.012em;
-  line-height: 1.15;
-  text-wrap: balance;
+  font-weight: 700;
+  font-size: clamp(13px, 11.5cqw, 24px);
+  letter-spacing: -0.02em;
+  color: var(--green);
 }
 
-.hexcard-ar {
-  color: var(--gold);
-  font-size: 0.72rem;
-  line-height: 1.4;
+.hexcard-note {
+  font-size: clamp(9px, 7cqw, 13px);
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 .hexcard-meta {
-  font-size: 0.63rem;
-  color: rgba(255, 255, 255, 0.88);
-  margin-top: 2px;
+  font-size: clamp(9px, 7cqw, 13px);
+  font-weight: 700;
+  color: var(--green);
 }
 
 /* Narrow-screen fallback */
@@ -394,15 +405,15 @@ a {
    Sections and shared blocks
    --------------------------------------------------------------------------- */
 .section {
-  padding-block: 76px;
+  padding-block: 84px 96px;
 }
 
 .section-tight {
-  padding-block: 52px;
+  padding-block: 64px 72px;
 }
 
 .page-head {
-  padding-block: 56px 34px;
+  padding-block: 84px 40px;
 }
 
 .prose p + p {
@@ -521,4 +532,78 @@ a {
 .on-dark .ar-accent,
 footer .ar-accent {
   color: var(--gold);
+}
+
+/* ---------------------------------------------------------------------------
+   Ledger stat honeycomb (design values)
+   --------------------------------------------------------------------------- */
+.hexstats {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.hexstat {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 1 / 1.1547;
+  background: var(--gold);
+  padding: 1px;
+}
+
+.hexstat-inner {
+  position: absolute;
+  inset: 1px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20% 15%;
+  text-align: center;
+}
+
+.hexstat-value {
+  font-weight: 800;
+  font-size: clamp(22px, 15cqw, 44px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--green);
+}
+
+.hexstat-label {
+  font-size: clamp(10px, 5.4cqw, 14px);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.hexstat-flag {
+  color: var(--accent-ink);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hexstat-ghost {
+  aspect-ratio: 1 / 1.1547;
+  background: rgba(200, 160, 70, 0.45);
+  padding: 1px;
+}
+
+@media (max-width: 720px) {
+  .hexstats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .hexstats .hexrow {
+    display: contents;
+  }
+  .hexstat {
+    flex: initial !important;
+    aspect-ratio: 1 / 1.1547;
+  }
+  .hexstat-ghost {
+    display: none;
+  }
 }
