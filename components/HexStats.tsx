@@ -32,7 +32,7 @@ export function HexStats({ stats, ghosts = 2 }: { stats: Stat[]; ghosts?: number
         className="hexrow"
         style={{ marginTop: `calc(${BASIS} * -0.2887 + ${GAP * 0.865}px)` }}
       >
-        <span aria-hidden="true" style={{ flex: `0 0 calc(${BASIS} / 2 - ${GAP / 2}px)` }} />
+        <span className="hexspacer" aria-hidden="true" style={{ flex: `0 0 calc(${BASIS} / 2 - ${GAP / 2}px)` }} />
         {bottom.map((s) => (
           <Cell key={s.label} stat={s} />
         ))}

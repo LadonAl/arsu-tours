@@ -51,7 +51,7 @@ export function Honeycomb({ places, perRow = 5 }: { places: Place[]; perRow?: nu
             marginTop: `calc(${b} * -0.2887 + ${GAP * 0.865}px)`,
           }}
         >
-          <span aria-hidden="true" style={{ flex: `0 0 calc(${b} / 2 - ${GAP / 2}px)` }} />
+          <span className="hexspacer" aria-hidden="true" style={{ flex: `0 0 calc(${b} / 2 - ${GAP / 2}px)` }} />
           {bottom.map((p) => (
             <HexCard key={p.slug} place={p} />
           ))}

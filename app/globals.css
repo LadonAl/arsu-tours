@@ -602,21 +602,46 @@ footer .ar-accent {
   padding: 1px;
 }
 
+/* ---------------------------------------------------------------------------
+   Ledger honeycomb on narrow screens.
+
+   The comb geometry depends on inline flex bases, a negative row offset and a
+   half-cell spacer. Below 720px there is no room to interlock five columns, so
+   the whole arrangement is dropped for a plain two-up grid -- which means
+   overriding the inline styles explicitly and removing the spacer, or it
+   becomes a phantom cell and the rows sit half a hexagon out of step.
+   --------------------------------------------------------------------------- */
 @media (max-width: 720px) {
   .hexstats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
+
   .hexstats .hexrow {
     display: contents;
   }
-  .hexstat {
-    flex: initial !important;
-    aspect-ratio: 1 / 1.1547;
+
+  /* inline margin-top carries the comb offset; it has to go */
+  .hexstats .hexrow[style] {
+    margin-top: 0 !important;
   }
-  .hexstat-ghost {
-    display: none;
+
+  .hexstats .hexstat {
+    flex: initial !important;
+    width: 100%;
+  }
+
+  /* the half-cell offset and the ghost cells are comb-only furniture */
+  .hexstats .hexspacer,
+  .hexstats .hexstat-ghost {
+    display: none !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .hexstats {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -747,4 +772,28 @@ footer .ar-accent {
 [data-motion='1'] [data-anim='hero-facts'] > div,
 [data-motion='1'] [data-anim='page-head'] > * {
   opacity: 0;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Ornaments on narrow screens.
+
+   The ornament is sized to bleed off the side of a wide section. At phone
+   width the same geometry puts a large, high-contrast pattern directly behind
+   the heading, which is the one thing it must never compete with. It is
+   decorative, so it fades right down on tablets and goes entirely on phones.
+
+   !important is needed because GSAP finishes its tween by writing opacity: 1
+   inline, which would otherwise win.
+   --------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  [data-orn] {
+    opacity: 0.35 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  [data-orn] {
+    display: none !important;
+  }
 }
