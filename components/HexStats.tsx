@@ -19,7 +19,7 @@ export function HexStats({ stats, ghosts = 2 }: { stats: Stat[]; ghosts?: number
   const bottom = stats.slice(half);
 
   return (
-    <div className="hexstats">
+    <div className="hexstats" data-hexgrid="1">
       <div className="hexrow">
         {top.map((s) => (
           <Cell key={s.label} stat={s} />
@@ -46,7 +46,7 @@ export function HexStats({ stats, ghosts = 2 }: { stats: Stat[]; ghosts?: number
 
 function Cell({ stat }: { stat: Stat }) {
   return (
-    <div className="hexstat" style={{ clipPath: CLIP, flex: `0 0 ${BASIS}` }}>
+    <div className="hexstat" data-anim="hex-empty" style={{ clipPath: CLIP, flex: `0 0 ${BASIS}` }}>
       <div className="hexstat-inner" style={{ clipPath: CLIP }}>
         <span className="hexstat-value">{stat.value}</span>
         <span className="hexstat-label">
@@ -65,7 +65,7 @@ function Cell({ stat }: { stat: Stat }) {
 
 function Ghost() {
   return (
-    <div className="hexstat-ghost" aria-hidden="true" style={{ clipPath: CLIP, flex: `0 0 ${BASIS}` }}>
+    <div className="hexstat-ghost" data-anim="hex-empty" aria-hidden="true" style={{ clipPath: CLIP, flex: `0 0 ${BASIS}` }}>
       <div style={{ width: '100%', height: '100%', background: '#fff', clipPath: CLIP }} />
     </div>
   );

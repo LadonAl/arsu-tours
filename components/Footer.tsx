@@ -20,7 +20,7 @@ export function Footer() {
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/brand/mark-inverse.svg" alt="" width={62} height={62} aria-hidden="true" />
               <span

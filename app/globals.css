@@ -296,6 +296,8 @@ a {
   inset: 1px;
   background-size: cover;
   background-position: center;
+  /* transform-origin centred so the GSAP hover push reads as a zoom */
+  transform-origin: 50% 50%;
 }
 
 .hexcard-panel {
@@ -310,12 +312,21 @@ a {
   padding: 18% 14%;
   text-align: center;
   opacity: 0;
-  transition: opacity 240ms ease;
 }
 
+/* No-JS and reduced-motion fallback. When SiteMotion is running it sets inline
+   opacity via GSAP, which outranks this and drives the staggered reveal; a CSS
+   transition here would fight it frame by frame, so there isn't one. */
 .hexcard:hover .hexcard-panel,
 .hexcard:focus-visible .hexcard-panel {
   opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hexcard:hover .hexcard-panel,
+  .hexcard:focus-visible .hexcard-panel {
+    opacity: 1;
+  }
 }
 
 /* cqw units: these scale against the cell, so one rule covers every row size. */
@@ -700,7 +711,8 @@ footer .ar-accent {
 
 .sourcelist a::after {
   content: '↗';
-  color: var(--gold);
+  /* Signals "opens externally", so it needs to be legible, not just decorative. */
+  color: var(--accent-ink);
   flex: 0 0 auto;
   font-weight: 400;
 }
@@ -717,4 +729,22 @@ footer .ar-accent {
 .illus-note strong {
   color: var(--accent-ink);
   font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Pre-paint from-state.
+
+   Only applies while <html data-motion="1"> is set, which a blocking script
+   adds before first paint and SiteMotion removes as soon as GSAP has written
+   its inline styles. A 2.5s timeout in that script removes it too, so a
+   hydration failure reveals the content instead of hiding it forever.
+   --------------------------------------------------------------------------- */
+[data-motion='1'] [data-anim='hero-h1'],
+[data-motion='1'] [data-anim='hero-lead'],
+[data-motion='1'] [data-anim='hero-cta'],
+[data-motion='1'] [data-anim='hero-photo'],
+[data-motion='1'] [data-anim='hero-facts'] > div,
+[data-motion='1'] [data-anim='page-head'] > * {
+  opacity: 0;
 }

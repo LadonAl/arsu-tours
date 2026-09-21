@@ -32,7 +32,7 @@ export default async function JourneyPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <section className="page-head">
-        <div className="shell">
+        <div className="shell" data-anim="page-head">
           <Link href="/journeys" className="small" style={{ color: 'var(--sienna)', fontWeight: 700 }}>
             ← Journeys
           </Link>
@@ -115,7 +115,9 @@ export default async function JourneyPage({ params }: { params: Promise<{ slug: 
                         style={{
                           fontSize: '1.75rem',
                           fontWeight: 800,
-                          color: 'var(--gold)',
+                          // gold is 2.44:1 on white and fails even the 3:1
+                          // large-text floor; accent-ink keeps the warm tone
+                          color: 'var(--accent-ink)',
                           lineHeight: 1,
                         }}
                       >

@@ -38,16 +38,17 @@ export default function Home() {
           className="max-[640px]:!px-5 max-[640px]:!pt-14 max-[640px]:!pb-16"
         >
           <div style={{ minWidth: 0 }}>
-            <h1 className="display" style={{ margin: '0 0 26px' }}>
+            <h1 className="display" data-anim="hero-h1" style={{ margin: '0 0 26px' }}>
               {HERO.title}
             </h1>
             <p
               className="lead"
+              data-anim="hero-lead"
               style={{ maxWidth: 480, margin: '0 0 40px', textWrap: 'pretty' }}
             >
               {HERO.lead}
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 28px' }}>
+            <div data-anim="hero-cta" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 28px' }}>
               <Link href="/plan" className="btn btn-solid">
                 Plan a journey
               </Link>
@@ -59,6 +60,7 @@ export default function Home() {
 
           <div style={{ minWidth: 0 }}>
             <div
+              data-anim="hero-photo"
               style={{
                 borderRadius: 4,
                 overflow: 'hidden',
@@ -79,6 +81,7 @@ export default function Home() {
             </div>
 
             <div
+              data-anim="hero-facts"
               style={{
                 marginTop: 22,
                 display: 'grid',
@@ -125,6 +128,7 @@ export default function Home() {
       >
         <span style={{ height: 1, background: 'var(--bone)', flex: 1 }} />
         <span
+          data-anim="hex-mark"
           style={{
             width: 24,
             height: 27,

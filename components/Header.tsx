@@ -35,16 +35,16 @@ export function Header() {
       >
         <Link
           href="/"
-          style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0 }}
           aria-label={`${SITE.name} — home`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/mark.svg" alt="" width={48} height={48} aria-hidden="true" />
+          <img src="/brand/mark.svg" alt="" width={58} height={58} aria-hidden="true" />
           <span
             className="ar"
             lang="ar"
             dir="rtl"
-            style={{ color: 'var(--green)', fontSize: 22, lineHeight: 1, fontWeight: 600 }}
+            style={{ color: 'var(--green)', fontSize: 25, lineHeight: 1, fontWeight: 600 }}
           >
             {SITE.ar}
           </span>

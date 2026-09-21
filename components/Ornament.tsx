@@ -1,7 +1,3 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
-
 /**
  * The design's ornaments, ported rather than reinvented.
  *
@@ -19,9 +15,9 @@ import { useEffect, useRef } from 'react';
  *   2. The design's rhythm: the green ornament bleeds off the RIGHT of white
  *      sections, the gold one off the LEFT of green sections.
  *
- * The design animates these via a `--orn` custom property that its GSAP pass
- * selects on. That is reproduced here as a local fade/scale/rotate so the
- * behaviour travels with the component.
+ * The design animates these from its single GSAP pass, selecting on a `--orn`
+ * marker. Here the marker is `data-orn` and SiteMotion owns the animation, so
+ * all motion stays in one place.
  */
 
 type Variant = 'light' | 'dark' | 'card';
@@ -51,39 +47,11 @@ export function Ornament({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let killed = false;
-    let ctx: { revert: () => void } | undefined;
-
-    (async () => {
-      const { gsap } = await import('gsap');
-      if (killed) return;
-      ctx = gsap.context(() => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, scale: 0.92, rotate: -4 },
-          { opacity: 1, scale: 1, rotate: 0, duration: 1.6, ease: 'power2.out', delay: 0.25 },
-        );
-      }, el);
-    })();
-
-    return () => {
-      killed = true;
-      ctx?.revert();
-    };
-  }, []);
-
   const mask = `radial-gradient(closest-side, #000 ${maskStop}%, transparent 100%)`;
 
   return (
     <div
-      ref={ref}
+      data-orn="1"
       aria-hidden="true"
       className={className}
       style={{

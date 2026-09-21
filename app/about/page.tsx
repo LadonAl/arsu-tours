@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="page-head">
-        <div className="shell">
+        <div className="shell" data-anim="page-head">
           <p className="eyebrow">About</p>
           <h1 className="display" style={{ marginTop: 14, maxWidth: '16ch' }}>
             A guardian of the caravan roads.

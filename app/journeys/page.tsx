@@ -16,7 +16,7 @@ export default function JourneysPage() {
   return (
     <>
       <section className="page-head">
-        <div className="shell">
+        <div className="shell" data-anim="page-head">
           <p className="eyebrow">Journeys</p>
           <h1 className="display" style={{ marginTop: 14, maxWidth: '16ch' }}>
             Three routes, built around the roads.

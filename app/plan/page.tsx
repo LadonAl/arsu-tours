@@ -10,7 +10,7 @@ export default function PlanPage() {
   return (
     <>
       <section className="page-head">
-        <div className="shell">
+        <div className="shell" data-anim="page-head">
           <p className="eyebrow">Plan a journey</p>
           <h1 className="display" style={{ marginTop: 14, maxWidth: '15ch' }}>
             Tell us roughly what you want.

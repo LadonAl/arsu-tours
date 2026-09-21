@@ -28,7 +28,7 @@ export default function LedgerPage() {
       </section>
 
       <section style={{ paddingBottom: 30 }}>
-        <div className="shell">
+        <div className="shell" data-anim="page-head">
           <p className="notice" style={{ maxWidth: '78ch' }}>
             <strong>Every number on this page is invented.</strong> {DEMO.ledgerNotice}
           </p>

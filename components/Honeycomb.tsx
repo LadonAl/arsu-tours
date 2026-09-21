@@ -38,7 +38,7 @@ export function Honeycomb({ places, perRow = 5 }: { places: Place[]; perRow?: nu
 
   return (
     <>
-      <div className="honeycomb max-[720px]:!hidden" style={{ ['--hex-basis' as string]: b }}>
+      <div className="honeycomb max-[720px]:!hidden" data-hexgrid="1" style={{ ['--hex-basis' as string]: b }}>
         <div className="hexrow">
           {top.map((p) => (
             <HexCard key={p.slug} place={p} />
@@ -75,6 +75,7 @@ function HexCard({ place }: { place: Place }) {
     <Link
       href={`/regions/${place.slug}`}
       className="hexcard"
+      data-anim="hex"
       style={{ clipPath: CLIP, flex: '0 0 var(--hex-basis)' }}
     >
       <span

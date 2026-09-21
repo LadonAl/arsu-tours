@@ -6,6 +6,7 @@ import { CurrencyProvider } from '@/components/CurrencyProvider';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { DemoBar } from '@/components/DemoBar';
+import { SiteMotion } from '@/components/SiteMotion';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -52,6 +53,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${manrope.variable} ${kufi.variable}`}>
+      <head>
+        {/* Runs before first paint. The server sends the hero at full opacity,
+            so without this it paints once and then snaps to the animation's
+            from-state — a visible flash the design never had, because it is
+            client-rendered. The timeout is a safety net: if React never
+            hydrates, the content reveals itself rather than staying blank. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var d=document.documentElement;d.setAttribute('data-motion','1');setTimeout(function(){d.removeAttribute('data-motion')},2500)}}catch(e){}",
+          }}
+        />
+      </head>
       <body>
         <CurrencyProvider>
           <a className="skip-link" href="#main">
@@ -59,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </a>
           <DemoBar />
           <Header />
+          <SiteMotion />
           <main id="main">{children}</main>
           <Footer />
         </CurrencyProvider>

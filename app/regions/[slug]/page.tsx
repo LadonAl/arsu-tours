@@ -36,7 +36,7 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
   return (
     <>
       <section className="page-head">
-        <div className="shell">
+        <div className="shell" data-anim="page-head">
           <Link href="/regions" className="small" style={{ color: 'var(--sienna)', fontWeight: 700 }}>
             ← Where we go
           </Link>

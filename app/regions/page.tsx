@@ -15,7 +15,7 @@ export default function RegionsPage() {
   return (
     <>
       <section className="page-head">
-        <div className="shell">
+        <div className="shell" data-anim="page-head">
           <p className="eyebrow">Where we go</p>
           <h1 className="display" style={{ marginTop: 14, maxWidth: '17ch' }}>
             Ten regions, honestly described.
