@@ -27,8 +27,6 @@ export function EnquiryForm() {
       <div
         style={{
           border: '1px solid var(--bone)',
-          borderInlineStartWidth: 3,
-          borderInlineStartColor: 'var(--gold)',
           padding: '32px 30px',
           background: 'var(--paper)',
         }}

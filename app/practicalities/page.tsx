@@ -29,7 +29,7 @@ export default function PracticalitiesPage() {
       {/* Advisories first. Anything else at the top would be burying it. */}
       <section style={{ paddingBottom: 20 }}>
         <div className="shell">
-          <div style={{ border: '1px solid var(--bone)', borderInlineStartWidth: 3, borderInlineStartColor: 'var(--sienna)' }}>
+          <div style={{ border: '1px solid var(--bone)', background: 'var(--paper)' }}>
             <div style={{ padding: '26px 28px 8px' }}>
               <h2 className="h3" style={{ color: 'var(--sienna)' }}>
                 What the travel advisories say
