@@ -46,3 +46,6 @@ design-source.html
 
 # tool caches
 .impeccable/
+
+.vercel
+.env*
