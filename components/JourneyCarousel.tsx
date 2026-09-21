@@ -7,6 +7,7 @@ import { IMAGES } from '@/content/images';
 import { JOURNEYS } from '@/content/journeys';
 import { DEMO } from '@/content/site';
 import { Money } from './CurrencyProvider';
+import { Ornament } from './Ornament';
 
 export function JourneyCarousel() {
   const [i, setI] = useState(0);
@@ -20,11 +21,7 @@ export function JourneyCarousel() {
       id="journeys"
       style={{ background: 'var(--green)', position: 'relative', overflow: 'hidden' }}
     >
-      <span
-        className="pattern-gold"
-        aria-hidden="true"
-        style={{ position: 'absolute', inset: 0, opacity: 0.12, pointerEvents: 'none' }}
-      />
+      <Ornament variant="dark" side="left" inset="-8%" offset={-240} />
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '92px 40px 96px', position: 'relative' }} className="max-[640px]:!px-5">
         <div
           style={{

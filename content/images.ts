@@ -11,6 +11,8 @@
  */
 
 export type Credit = {
+  /** True for AI-generated artwork. Never presented as a photograph. */
+  illustration?: boolean;
   /** Key used by places/journeys content. */
   id: string;
   /** Resolved src. Unsplash ids become a CDN URL; Commons files are local. */
@@ -76,7 +78,49 @@ const c = (
   archivalNote,
 });
 
+/**
+ * AI-generated illustrations.
+ *
+ * These are NOT photographs of real objects and must never be presented as
+ * such on a site whose whole argument is that it checked its facts. They are
+ * drawn from the documented descriptions of two real reliefs — the
+ * Dura-Europos panel at Yale, and the paired Arsu-and-Azizos relief in the
+ * National Museum of Aleppo — and every page that shows one says plainly that
+ * it is an illustration and points at the real object.
+ */
+const ai = (
+  file: string,
+  key: string,
+  alt: string,
+  note: string,
+): Credit => ({
+  id: key,
+  src: `/illustrations/${file}`,
+  source: 'commons',
+  illustration: true,
+  alt,
+  photographer: 'AI-generated illustration (not a photograph of a real object)',
+  profileUrl: '/about',
+  licence: 'Illustration made for this demo',
+  licenceUrl: '/demo',
+  archivalNote: note,
+});
+
 export const IMAGES: Record<string, Credit> = {
+  // ---- Illustrations (clearly labelled as such wherever they appear) -------
+  arsuRelief: ai(
+    'arsu-camel-relief.jpg',
+    'arsuRelief',
+    'An illustration of a Palmyrene limestone relief: an armoured rider on a camel, carrying a spear, with a small round shield on the saddle and a crescent carved above',
+    'Illustration, not a photograph. Drawn from the description of the Dura-Europos relief of Arsu the camel-rider (Yale University Art Gallery, YFE 1935.44, c. 100-200 CE).',
+  ),
+  arsuAzizos: ai(
+    'arsu-azizos-relief.jpg',
+    'arsuAzizos',
+    'An illustration of a Palmyrene relief showing two riders — one on a camel in armour, one on a horse in civilian robes — with a priest making an offering at a burning altar between them',
+    'Illustration, not a photograph. Drawn from the description of the paired Arsu and Azizos relief dated by inscription to 113 CE, National Museum of Aleppo.',
+  ),
+
   // ---- Unsplash ------------------------------------------------------------
   damascusSouq: u(
     'photo-1645740262380-d86b597b90c4',

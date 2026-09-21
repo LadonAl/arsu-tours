@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const img = IMAGES.palmyraColonnade;
+  const relief = IMAGES.arsuRelief;
+  const pair = IMAGES.arsuAzizos;
+  const colonnade = IMAGES.palmyraColonnade;
 
   return (
     <>
@@ -30,22 +32,20 @@ export default function AboutPage() {
 
       <section>
         <div className="shell">
-          <div style={{ position: 'relative', aspectRatio: '21/9', background: 'var(--bone)' }}>
+          <div style={{ position: 'relative', aspectRatio: '16/9', background: 'var(--bone)' }}>
             <Image
-              src={img.src}
-              alt={img.alt}
+              src={pair.src}
+              alt={pair.alt}
               fill
               priority
-              sizes="(max-width: 1180px) 100vw, 1180px"
+              sizes="(max-width: 1240px) 100vw, 1240px"
               style={{ objectFit: 'cover' }}
             />
           </div>
-          <p className="small" style={{ marginTop: 9, fontSize: '0.73rem' }}>
-            The Great Colonnade at Palmyra, where Arsu had his temple. Photo by{' '}
-            <a href={img.profileUrl} rel="noopener noreferrer nofollow" target="_blank">
-              {img.photographer}
-            </a>{' '}
-            on Unsplash.
+          <p className="illus-note">
+            <strong>Illustration, not a photograph.</strong> {pair.archivalNote} Arsu rides the
+            camel in armour; his twin Azizos rides the horse in ordinary clothes; a priest makes
+            an offering at the altar between them.
           </p>
         </div>
       </section>
@@ -60,6 +60,27 @@ export default function AboutPage() {
               <h2 className="h2">Who Arsu was</h2>
               <p className="small" style={{ marginTop: 14, maxWidth: '30ch' }}>
                 1st century BCE to 3rd century CE, Palmyra and Dura-Europos.
+              </p>
+              <div
+                style={{
+                  position: 'relative',
+                  aspectRatio: '4/3',
+                  marginTop: 26,
+                  border: '1px solid var(--bone)',
+                  borderRadius: 4,
+                  overflow: 'hidden',
+                }}
+              >
+                <Image
+                  src={relief.src}
+                  alt={relief.alt}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 360px"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+              <p className="illus-note" style={{ marginTop: 10 }}>
+                <strong>Illustration.</strong> {relief.archivalNote}
               </p>
             </div>
             <Reveal className="prose">
@@ -76,7 +97,15 @@ export default function AboutPage() {
       {/* The bit that matters most. Stated plainly, not buried. */}
       <section style={{ background: 'var(--paper)', paddingBlock: 60 }}>
         <div className="shell">
-          <div style={{ maxWidth: '68ch' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+              gap: 52,
+              alignItems: 'start',
+            }}
+          >
+          <div>
             <h2 className="h2">On using the name</h2>
             <p className="body" style={{ marginTop: 16 }}>
               Arsu is an archaeological subject, not a religious one. The cult ended with
@@ -97,6 +126,35 @@ export default function AboutPage() {
               worth telling us; getting it right matters more than the name does.
             </p>
           </div>
+
+          <figure style={{ margin: 0 }}>
+            <div
+              style={{
+                position: 'relative',
+                aspectRatio: '4/3',
+                border: '1px solid var(--bone)',
+                borderRadius: 4,
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={colonnade.src}
+                alt={colonnade.alt}
+                fill
+                sizes="(max-width: 900px) 100vw, 520px"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <figcaption className="small" style={{ marginTop: 10, fontSize: 12 }}>
+              The Great Colonnade at Palmyra, where Arsu had his temple and where excavators
+              recovered a jar of 125 clay banquet tokens. Photo by{' '}
+              <a href={colonnade.profileUrl} rel="noopener noreferrer nofollow" target="_blank">
+                {colonnade.photographer}
+              </a>{' '}
+              on Unsplash.
+            </figcaption>
+          </figure>
+          </div>
         </div>
       </section>
 
@@ -109,17 +167,11 @@ export default function AboutPage() {
             long-standing scholarly reading, not something the Palmyrenes recorded, and it is
             presented that way.
           </p>
-          <ul style={{ marginTop: 22, padding: 0, listStyle: 'none', display: 'grid', gap: 10 }}>
-            {ARSU.sources.map((s) => (
-              <li key={s.href}>
-                <a
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="link-gold"
-                  style={{ fontWeight: 600 }}
-                >
-                  {s.label} ↗
+          <ul className="sourcelist">
+            {ARSU.sources.map((src) => (
+              <li key={src.href}>
+                <a href={src.href} target="_blank" rel="noopener noreferrer nofollow">
+                  <span>{src.label}</span>
                 </a>
               </li>
             ))}

@@ -102,20 +102,6 @@ a {
 }
 
 /* ---------------------------------------------------------------------------
-   Islamic geometric watermark. An eight-pointed star tile, the same family as
-   the mark. Rendered as an inline SVG data URI so it costs no request.
-   --------------------------------------------------------------------------- */
-.pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%230B3B2F' stroke-width='1.1' opacity='0.5'%3E%3Cpath d='M80 8 L98 44 L138 44 L116 80 L138 116 L98 116 L80 152 L62 116 L22 116 L44 80 L22 44 L62 44 Z'/%3E%3Crect x='44' y='44' width='72' height='72' transform='rotate(45 80 80)'/%3E%3Crect x='44' y='44' width='72' height='72'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 300px 300px;
-}
-
-.pattern-gold {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23C8A046' stroke-width='1.3' opacity='0.85'%3E%3Cpath d='M80 8 L98 44 L138 44 L116 80 L138 116 L98 116 L80 152 L62 116 L22 116 L44 80 L22 44 L62 44 Z'/%3E%3Crect x='44' y='44' width='72' height='72' transform='rotate(45 80 80)'/%3E%3Crect x='44' y='44' width='72' height='72'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 300px 300px;
-}
-
-/* ---------------------------------------------------------------------------
    Type scale
    --------------------------------------------------------------------------- */
 .display {
@@ -198,6 +184,12 @@ a {
 }
 .btn-solid:hover {
   background: var(--green-lift);
+}
+
+.btn-sm {
+  padding: 11px 18px;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .btn-ghost {
@@ -615,4 +607,114 @@ footer .ar-accent {
   .hexstat-ghost {
     display: none;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Highlight cards.
+
+   These sit in an auto-fill grid, so the cards are different heights and the
+   condition note ends up floating at a different level in every column. The
+   fix is a flex column with the note pushed to the bottom, and the Arabic
+   name on its own line so the header block is consistent whether or not the
+   English title happens to fit beside it.
+   --------------------------------------------------------------------------- */
+.hl-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border: 1px solid var(--bone);
+  padding: 22px 22px 24px;
+}
+
+.hl-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.hl-ar {
+  color: var(--accent-ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.hl-blurb {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* Pinned to the bottom so the notes line up across the row. */
+.hl-card .condition {
+  margin-top: auto;
+}
+
+.condition {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--accent-ink);
+  background: var(--paper);
+  border: 1px solid var(--bone);
+  padding: 8px 11px;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Source lists.
+
+   .link-gold is a standalone call-to-action: an inline-flex with a gold rule
+   under it. Stacked in a list it produced ragged rules of different widths at
+   tight spacing. A list of references wants list treatment instead.
+   --------------------------------------------------------------------------- */
+.sourcelist {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--bone);
+  max-width: 68ch;
+}
+
+.sourcelist li {
+  border-bottom: 1px solid var(--bone);
+}
+
+.sourcelist a {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 15px 2px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+}
+
+.sourcelist a:hover {
+  color: var(--accent-ink);
+  background: var(--paper);
+}
+
+.sourcelist a::after {
+  content: '↗';
+  color: var(--gold);
+  flex: 0 0 auto;
+  font-weight: 400;
+}
+
+/* Caption for AI-generated artwork. Deliberately prominent: this site argues
+   that it checked its facts, so an illustration must never read as evidence. */
+.illus-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 19px;
+  color: var(--muted-soft);
+}
+
+.illus-note strong {
+  color: var(--accent-ink);
+  font-weight: 700;
 }

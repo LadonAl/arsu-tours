@@ -20,21 +20,16 @@ export function Footer() {
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/brand/mark.svg" alt="" width={38} height={38} aria-hidden="true" />
-              <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-                <span style={{ fontWeight: 800, letterSpacing: '0.15em', fontSize: '1.05rem' }}>
-                  {SITE.wordmark}
-                </span>
-                <span
-                  className="ar"
-                  lang="ar"
-                  dir="rtl"
-                  style={{ color: 'var(--gold)', fontSize: '0.84rem', marginTop: 5 }}
-                >
-                  {SITE.ar}
-                </span>
+              <img src="/brand/mark-inverse.svg" alt="" width={62} height={62} aria-hidden="true" />
+              <span
+                className="ar"
+                lang="ar"
+                dir="rtl"
+                style={{ color: 'var(--gold)', fontSize: 26, lineHeight: 1, fontWeight: 600 }}
+              >
+                {SITE.ar}
               </span>
             </div>
             <p

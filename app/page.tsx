@@ -8,6 +8,7 @@ import { Honeycomb } from '@/components/Honeycomb';
 import { JourneyCarousel } from '@/components/JourneyCarousel';
 import { Reveal } from '@/components/Reveal';
 import { HexStats } from '@/components/HexStats';
+import { Ornament } from '@/components/Ornament';
 import { STATS } from '@/content/ledger';
 
 /**
@@ -22,22 +23,7 @@ export default function Home() {
     <>
       {/* ---------------------------------------------------------------- hero */}
       <section id="top" style={{ position: 'relative', background: '#fff', overflow: 'hidden' }}>
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: '-6%',
-            bottom: '-6%',
-            right: -230,
-            width: 'auto',
-            aspectRatio: '478 / 533',
-            backgroundImage: 'url(/brand/ornament-star.svg)',
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            pointerEvents: 'none',
-          }}
-        />
+        <Ornament variant="light" side="right" inset="-6%" offset={-230} />
         <div
           style={{
             position: 'relative',

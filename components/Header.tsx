@@ -35,38 +35,16 @@ export function Header() {
       >
         <Link
           href="/"
-          style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}
           aria-label={`${SITE.name} — home`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/mark.svg" alt="" width={34} height={34} aria-hidden="true" />
-          <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span
-              style={{
-                fontWeight: 800,
-                letterSpacing: '0.15em',
-                fontSize: '0.97rem',
-                color: 'var(--green)',
-              }}
-            >
-              {SITE.wordmark}
-            </span>
-            <span
-              style={{
-                fontSize: '0.475rem',
-                letterSpacing: '0.24em',
-                color: 'var(--muted-soft)',
-                marginTop: 3,
-              }}
-            >
-              {SITE.tagline}
-            </span>
-          </span>
+          <img src="/brand/mark.svg" alt="" width={48} height={48} aria-hidden="true" />
           <span
             className="ar"
             lang="ar"
             dir="rtl"
-            style={{ color: 'var(--accent-ink)', fontSize: '0.8rem', marginInlineStart: 4 }}
+            style={{ color: 'var(--green)', fontSize: 22, lineHeight: 1, fontWeight: 600 }}
           >
             {SITE.ar}
           </span>
@@ -122,7 +100,7 @@ export function Header() {
             ))}
           </select>
 
-          <Link href="/plan" className="btn btn-ghost max-md:!hidden">
+          <Link href="/plan" className="btn btn-sm btn-ghost max-md:!hidden">
             Plan a journey
           </Link>
 

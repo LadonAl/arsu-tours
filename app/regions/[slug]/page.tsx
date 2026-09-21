@@ -129,28 +129,18 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
               }}
             >
               {place.highlights.map((h) => (
-                <div
-                  key={h.name}
-                  style={{ background: '#fff', border: '1px solid var(--bone)', padding: '22px 22px 24px' }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 9, flexWrap: 'wrap' }}>
+                <article key={h.name} className="hl-card">
+                  <div className="hl-head">
                     <h3 className="h3">{h.name}</h3>
                     {h.nameAr && (
-                      <span
-                        className="ar"
-                        lang="ar"
-                        dir="rtl"
-                        style={{ color: 'var(--accent-ink)', fontSize: '0.8rem' }}
-                      >
+                      <span className="ar hl-ar" lang="ar" dir="rtl">
                         {h.nameAr}
                       </span>
                     )}
                   </div>
-                  <p className="body" style={{ marginTop: 10, fontSize: '0.9rem' }}>
-                    {h.blurb}
-                  </p>
+                  <p className="body hl-blurb">{h.blurb}</p>
                   <p className="condition">{h.condition}</p>
-                </div>
+                </article>
               ))}
             </div>
           </Reveal>

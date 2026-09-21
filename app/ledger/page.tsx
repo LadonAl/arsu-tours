@@ -4,6 +4,7 @@ import { DEMO } from '@/content/site';
 import { Money } from '@/components/CurrencyProvider';
 import { Reveal } from '@/components/Reveal';
 import { HexStats } from '@/components/HexStats';
+import { Ornament } from '@/components/Ornament';
 
 export const metadata: Metadata = {
   title: 'The ledger',
@@ -14,19 +15,7 @@ export default function LedgerPage() {
   return (
     <>
       <section className="page-head" style={{ position: 'relative', overflow: 'hidden' }}>
-        <span
-          className="pattern"
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: -80,
-            right: -140,
-            width: 640,
-            height: 560,
-            opacity: 0.16,
-            pointerEvents: 'none',
-          }}
-        />
+        <Ornament variant="light" side="right" inset="-22%" offset={-220} />
         <div className="shell" style={{ position: 'relative' }}>
           <p className="eyebrow">The ledger</p>
           <h1 className="display" style={{ marginTop: 14, maxWidth: '14ch' }}>
