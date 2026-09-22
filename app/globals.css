@@ -312,11 +312,10 @@ a {
   padding: 18% 14%;
   text-align: center;
   opacity: 0;
+  /* The design fades the panel in CSS and staggers only its children in GSAP.
+     Keeping the split here means nothing competes for the panel's opacity. */
+  transition: opacity 240ms ease;
 }
-
-/* No-JS and reduced-motion fallback. When SiteMotion is running it sets inline
-   opacity via GSAP, which outranks this and drives the staggered reveal; a CSS
-   transition here would fight it frame by frame, so there isn't one. */
 .hexcard:hover .hexcard-panel,
 .hexcard:focus-visible .hexcard-panel {
   opacity: 1;

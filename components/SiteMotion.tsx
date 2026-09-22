@@ -26,6 +26,7 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffec
  *   hex-mark       scale .2 rotate -90, dur .9, back.out(2), top 94% once
  *   hex grid       cells opacity 0 scale .86 y22, dur .8, stagger .07, top 80% once
  *   hex hover      photo scale 1.07 (.55s) + label children fromTo y12/opacity0, stagger .05 @0.08
+ *                  (the panel's own fade is CSS, not part of the timeline)
  */
 export function SiteMotion() {
   const pathname = usePathname();
@@ -142,9 +143,12 @@ export function SiteMotion() {
 
           const tl = gsap.timeline({ paused: true });
           tl.to(photo, { scale: 1.07, duration: 0.55, ease: 'power2.out' }, 0);
+          // The panel's own fade is CSS, exactly as in the design. Tweening it
+          // here as well is a trap: the :hover rule has already set opacity to
+          // 1 by the time GSAP records the tween's start value, so it captures
+          // from: 1, to: 1 and reverse() leaves the panel stuck open.
           const lines = Array.from(panel.children);
           if (lines.length) {
-            tl.to(panel, { opacity: 1, duration: 0.24, ease: 'power2.out' }, 0);
             tl.fromTo(
               lines,
               { y: 12, opacity: 0 },
