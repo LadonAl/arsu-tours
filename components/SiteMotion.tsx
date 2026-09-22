@@ -120,8 +120,20 @@ export function SiteMotion() {
         });
 
         // Honeycomb entrance: the whole comb settles in, cell by cell.
-        q<HTMLElement>('#places, #money, [data-hexgrid]').forEach((sec) => {
-          const cells = sec.querySelectorAll('[data-anim="hex"], [data-anim="hex-empty"]');
+        //
+        // The design selects '#places, #money, [data-hexgrid]' because in its
+        // markup those three never overlap. Here they do: the home page's
+        // #money section *contains* a [data-hexgrid], so both selectors matched
+        // the same cells and built two gsap.from tweens on them. The second one
+        // read the first's start state, animated 0 -> 0, and left the whole
+        // comb invisible. One hook, plus a per-cell guard so a nested grid can
+        // never be claimed twice.
+        const claimed = new WeakSet<Element>();
+        q<HTMLElement>('[data-hexgrid]').forEach((sec) => {
+          const cells = Array.from(
+            sec.querySelectorAll('[data-anim="hex"], [data-anim="hex-empty"]'),
+          ).filter((c) => !claimed.has(c));
+          cells.forEach((c) => claimed.add(c));
           if (!cells.length) return;
           gsap.from(cells, {
             opacity: 0,
@@ -174,7 +186,30 @@ export function SiteMotion() {
 
     clearGuard();
 
+    /**
+     * ScrollTrigger measures start positions at creation time. Fonts swapping
+     * and images resolving change the document height afterwards, so a trigger
+     * far down the page can end up anchored to an offset that no longer
+     * exists — and then it simply never fires. Its elements stay frozen at the
+     * tween's from-state, which is how the ledger hexagons ended up invisible
+     * rather than merely late.
+     *
+     * Refresh once the page is actually settled, and again after fonts resolve.
+     * The delayed pair covers images that decode late.
+     */
+    const refresh = () => ScrollTrigger.refresh();
+    const timers = [window.setTimeout(refresh, 400), window.setTimeout(refresh, 1500)];
+
+    if (document.readyState === 'complete') {
+      requestAnimationFrame(refresh);
+    } else {
+      window.addEventListener('load', refresh);
+    }
+    document.fonts?.ready.then(refresh).catch(() => {});
+
     return () => {
+      timers.forEach(clearTimeout);
+      window.removeEventListener('load', refresh);
       teardown.forEach((fn) => fn());
       ctx.revert();
       clearGuard();
