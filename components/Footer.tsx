@@ -7,6 +7,9 @@ const SECONDARY = [
   { href: '/demo', label: 'About this demo' },
 ];
 
+// Not a Next route, so it cannot go through <Link> with the others.
+const SITEMAP = { href: '/sitemap.xml', label: 'Sitemap' };
+
 export function Footer() {
   return (
     <footer style={{ background: 'var(--green)', color: '#fff', marginTop: 96 }}>
@@ -100,6 +103,17 @@ export function Footer() {
                 {n.label}
               </Link>
             ))}
+            <a
+              href={SITEMAP.href}
+              style={{
+                display: 'block',
+                color: 'rgba(255,255,255,0.82)',
+                fontSize: '0.87rem',
+                padding: '6px 0',
+              }}
+            >
+              {SITEMAP.label}
+            </a>
           </nav>
         </div>
 
