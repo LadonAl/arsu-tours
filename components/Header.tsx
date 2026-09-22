@@ -35,19 +35,21 @@ export function Header() {
       >
         <Link
           href="/"
-          style={{ display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0 }}
+          style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}
           aria-label={`${SITE.name} — home`}
         >
+          {/* A single lockup: the coin and the Arabic wordmark are drawn as
+              outlines in one SVG, so the two can be aligned optically once and
+              never drift with font loading or hinting.
+              eslint-disable-next-line @next/next/no-img-element */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/mark.svg" alt="" width={58} height={58} aria-hidden="true" />
-          <span
-            className="ar"
-            lang="ar"
-            dir="rtl"
-            style={{ color: 'var(--green)', fontSize: 25, lineHeight: 1, fontWeight: 600 }}
-          >
-            {SITE.ar}
-          </span>
+          <img
+            src="/brand/logo-lockup.svg"
+            alt=""
+            width={104}
+            height={44}
+            style={{ display: 'block', height: 44, width: 'auto' }}
+          />
         </Link>
 
         <div style={{ flex: 1 }} aria-hidden="true" />

@@ -20,18 +20,14 @@ export function Footer() {
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/brand/mark-inverse.svg" alt="" width={62} height={62} aria-hidden="true" />
-              <span
-                className="ar"
-                lang="ar"
-                dir="rtl"
-                style={{ color: 'var(--gold)', fontSize: 26, lineHeight: 1, fontWeight: 600 }}
-              >
-                {SITE.ar}
-              </span>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/logo-lockup-inverse.svg"
+              alt={SITE.name}
+              width={123}
+              height={52}
+              style={{ display: 'block', height: 52, width: 'auto' }}
+            />
             <p
               style={{
                 marginTop: 18,
